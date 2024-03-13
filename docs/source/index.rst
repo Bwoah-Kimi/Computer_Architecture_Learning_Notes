@@ -12,5 +12,4 @@ Contents
 
 .. toctree::
 
-   
    ch1
