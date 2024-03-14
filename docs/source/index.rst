@@ -13,5 +13,6 @@ Contents
 .. toctree::
       :maxdepth: 2
       :numbered:
-   
-      ch1
+
+      chapter0
+      chapter1
