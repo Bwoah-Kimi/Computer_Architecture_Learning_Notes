@@ -27,30 +27,30 @@ What is an Algorithm?
 
 An Algorithm is a step-by-step procedure for solving a problem in a finite amount of time.
 Each step has three properties:
-	- Definite (precisely defined)
-	- Effectively computable (by a computer)
-	- Terminates
+- Definite (precisely defined)
+- Effectively computable (by a computer)
+- Terminates
 
 What is a Computer?
 ~~~~~~~~
 
 A Computer has three key components:
-	- computation: control and datapath
-	- communication: I/O
-	- storage
+- computation: control and datapath
+- communication: I/O
+- storage
 
 **The Von Neumann Model/Architecture** of a computer has two key properties:
-	- Stored Program
-		- instructions stored in a linear memory array
-		- memory is **unified** between instructions and data
-	- Sequential instruction processing
-		- one instruction processed at a time
-		- **program counter** identifies the current instruction
-		- program counter is advanced sequencially except for control transfer instructions
+- Stored Program
+  - instructions stored in a linear memory array
+  - memory is **unified** between instructions and data
+- Sequential instruction processing
+  - one instruction processed at a time
+  - **program counter** identifies the current instruction
+  - program counter is advanced sequencially except for control transfer instructions
 
 **The Dataflow Model** of a computer
-	* An instruction is fetched and executed in **data flow order**
-	* In a data flow machine, a program consists of data flow nodes. A data flow node fires when all its inputs are ready.
+* An instruction is fetched and executed in **data flow order**
+* In a data flow machine, a program consists of data flow nodes. A data flow node fires when all its inputs are ready.
 
 What is Computer Architecture?
 ~~~~~~~~
@@ -59,11 +59,11 @@ What is Computer Architecture?
 The science and art of designing, selecting, and interconnecting hardware components and designing the hardware/software interface to create a computing system that meets functional, performance, energy consumption, cost and other specific goals.
 
 **Traditional (ISA-only) definition**:
-The term _architecture_ is used to describe the attributes of a system as seen by the programmer, i.e., the conceptual structure and functional behavior as distinct from the organization of the dataflow and controls, the logic design, and the physical implementation.
+The term **architecture** is used to describe the attributes of a system as seen by the programmer, i.e., the conceptual structure and functional behavior as distinct from the organization of the dataflow and controls, the logic design, and the physical implementation.
 
 ISA vs Microarchitecture
-  * Implementation (uarch) can be various as long as it satisfies the specification (ISA)
-  * Microarchitecture usually changes faster than ISA
+* Implementation (uarch) can be various as long as it satisfies the specification (ISA)
+* Microarchitecture usually changes faster than ISA
 
 
 Fundamentals of Instruction Set Architecture (ISA)
@@ -72,7 +72,8 @@ Fundamentals of Instruction Set Architecture (ISA)
 Elements of an ISA
 ~~~~~~~~
 
-* Instruction sequencing model: control flow vs. data flow
+* Instruction sequencing model
+  * control flow vs. data flow
 * instruction processing style
 	* specifies the number of "operands" an instruction "operates" on and how it does so
 * Instructions
@@ -86,7 +87,7 @@ Elements of an ISA
 	* **Why registers?** Because programs exhibit a characterstic called **data locality**
 	* General purpose registers (GPR)
 		* all registers good for all purposes
-	* affects:
+	* Registers affect:
 		* number of bits used for encoding register address
 		* number of values kept in fast storage (register file)
 		* (uarch) size, access time, power consumption of register file
@@ -123,20 +124,21 @@ Different types of addressing modes
 ~~~~~~~~
 
 Addressing modes specifies how to obtain the operands from the registers/memory.
+
 * 寄存器寻址
 	* 值存储在寄存器中
 * 立即数寻址 (absolute)
 	* use immediate value as address
 * 寄存器间接寻址 (register indirect)
-	* use $GPR[r_{base}]$ as address
+	* use :math:`GPR[r_{base}]`` as address
 * 位移量寻址 (displaced or based)
-	* use $offset +GPR[r_{base}]$ as address
+	* use :math:`offset +GPR[r_{base}]` as address
 * 索引寻址 (indexed)
-	* use $GPR[r_{base}]+GPR[r_{index}]$ as address
+	* use :math:`GPR[r_{base}]+GPR[r_{index}]` as address
 * 存储器间接寻址 (memory indirect)
-	* use value at $M[GPR[r_{base}]]$ as address
+	* use value at :math:`M[GPR[r_{base}]]` as address
 * 自动递增寻址 (auto increment)
-	* use $GPR[r_{base}]$ as address, but inc. $GPR[r_{base}]$ each time
+	* use :math:`GPR[r_{base}]` as address, but inc. :math:`GPR[r_{base}]` each time
 * 自动递减寻址 (auto decrement)
 * 比例寻址
 	* 用于索引数组
@@ -169,6 +171,7 @@ Encoding of an ISA
 
 ISA所支持的各种操作通常在一个称为操作码(Opcode)的字段中指定。指令集编码将寻址方式与操作结合在一起
   * **地址标识符**：说明使用哪种寻址方式来访问操作数
+
 * **定长编码** (Fixed length)：所有指令的大小都相同
   * 当寻址方式和操作数都较少时，效果最好
   * Pros
