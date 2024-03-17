@@ -6,6 +6,8 @@ project = 'Learning Computer Architecture'
 copyright = '2024, tombstone_blues'
 author = 'tombstone_blues'
 
+language = 'zh_CN'
+
 release = '0.1'
 version = '0.1.0'
 
@@ -18,6 +20,9 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
+    'recommonmark',
+    'sphinx_rtd_theme',
+    'sphinx_markdown_tables',
 ]
 
 intersphinx_mapping = {
