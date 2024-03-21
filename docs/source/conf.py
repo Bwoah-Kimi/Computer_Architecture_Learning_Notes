@@ -22,7 +22,7 @@ extensions = [
     'sphinx.ext.mathjax',
 #   'recommonmark',
     'sphinx_rtd_theme',
-    'sphinx_markdown_tables',
+#   'sphinx_markdown_tables',
 ]
 
 intersphinx_mapping = {
