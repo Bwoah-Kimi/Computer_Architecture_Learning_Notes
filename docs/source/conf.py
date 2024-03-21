@@ -20,7 +20,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
-    'recommonmark',
+#   'recommonmark',
     'sphinx_rtd_theme',
     'sphinx_markdown_tables',
 ]
