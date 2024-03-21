@@ -1,6 +1,8 @@
 What is Computer Architecture?
 ==============================
 
+.. contents:: Table of Contents
+
 .. note::
 
 	 This part is based on Lecture 2 of CMU447.
