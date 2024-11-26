@@ -9,9 +9,7 @@
 * 使用某种快速执行模式获得的性能改进受限于可使用该种模式的时间比例
 * 加速比 (Speedup) 的定义为：
 
-$$
-\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}
-$$
+$$\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}$$
 
 加速比取决于：
 
@@ -19,9 +17,9 @@ $$
 * 通过改进执行模式得到的改进，也就是说在为整个程序使用这一执行模式时，任务的运行速度会提高多少倍——**改进加速比**
 
 
-$$ \text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}) $$
+$$\text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}})$$
 
-$$ \text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}} $$
+$$\text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}}$$
 
 ## 处理器性能公式
 
@@ -29,9 +27,9 @@ $$ \text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\fr
 * 指令路径长度，或指令数 (Instruction Count, IC)
 * **每条指令的时钟周期数 (Clock cycles per instruction, CPI)**
 
-$$ CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}} $$
+$$CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}}$$
 
-$$ CPU时间=指令数\times CPI\times 时钟周期时间 $$
+$$CPU时间=指令数\times CPI\times 时钟周期时间$$
 
 * 处理器的性能取决于三个特性：
 	* 时钟周期：硬件技术与组成
@@ -39,8 +37,8 @@ $$ CPU时间=指令数\times CPI\times 时钟周期时间 $$
 	* 指令数：指令集体系结构与编译器技术
 * 设计处理器时，有时采用如下公式计算处理器总时钟周期数目：
 
-$$ CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i $$
+$$CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i$$
 
 其中 $IC_i$ 表示一个程序中第 $i$ 个指令的执行次数，$CPI_i$ 表示第 $i$ 个指令的每条指令平均时钟周期数
 
-$$ CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i $$
+$$CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i$$

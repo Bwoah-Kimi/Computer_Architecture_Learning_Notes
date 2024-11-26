@@ -125,11 +125,11 @@ Addressing modes specifies how to obtain the operands from the registers/memory.
 * 立即数寻址 (absolute)
 	* use immediate value as address
 * 寄存器间接寻址 (register indirect)
-	* use $GPR[r_{base}]$ as address
+	* use $GPR[{r}_{base}]$ as address
 * 位移量寻址 (displaced or based)
-	* use $offset + GPR[r_{base}]$ as address
+	* use $offset + GPR[{r}_{base}]$ as address
 * 索引寻址 (indexed)
-	* use $GPR[r_{base}] + GPR[r_{index}]$ as address
+	* use $GPR[{r}_{base}] + GPR[{r}_{index}]$ as address
 * 存储器间接寻址 (memory indirect)
 	* use value at $M[GPR[r_{base}]]$ as address
 * 自动递增寻址 (auto increment)
@@ -140,14 +140,14 @@ Addressing modes specifies how to obtain the operands from the registers/memory.
 
 Advantages of more addressing modes
 
-	* enables better mapping of high-level constructs to the machine
+* enables better mapping of high-level constructs to the machine
 
 Disadvantages of more addressing modes
 
-	* higher complexity of the architecture
-	* higher CPI
-	* more work for the complier
-	* more work for the microarchitect
+* higher complexity of the architecture
+* higher CPI
+* more work for the complier
+* more work for the microarchitect
 
 ### Different Types of Operations in an ISA
 
