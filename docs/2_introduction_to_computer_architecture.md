@@ -1,17 +1,12 @@
-What is Computer Architecture?
-==============================
+# What is Computer Architecture?
 
-.. contents:: Table of Contents
+!!! info "Content Preview"
+	 This part is based on Lecture 2 of CMU 447.
 
-.. note::
+## Introduction to Computer Architecture
 
-	 This part is based on Lecture 2 of CMU447.
 
-Introduction to Computer Architecture
---------------------------------------
-
-Computer Architecture in Levels of Transformation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Computer Architecture in Levels of Transformation
 
 - Problem
 - Algorithm
@@ -24,8 +19,7 @@ Computer Architecture in Levels of Transformation
 - Devices and Electrons
 
 
-What is an Algorithm?
-~~~~~~~~~~~~~~~~~~~~~
+### What is an Algorithm?
 
 An Algorithm is a step-by-step procedure for solving a problem in a finite amount of time.
 Each step has three properties:
@@ -34,8 +28,7 @@ Each step has three properties:
 - Effectively computable (by a computer)
 - Terminates
 
-What is a Computer?
-~~~~~~~~~~~~~~~~~~~
+### What is a Computer?
 
 A Computer has three key components:
 
@@ -58,8 +51,7 @@ A Computer has three key components:
 * An instruction is fetched and executed in **data flow order**
 * In a data flow machine, a program consists of data flow nodes. A data flow node fires when all its inputs are ready.
 
-What is Computer Architecture?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### What is Computer Architecture?
 
 **ISA + implementation definition**:
 The science and art of designing, selecting, and interconnecting hardware components and designing the hardware/software interface to create a computing system that meets functional, performance, energy consumption, cost and other specific goals.
@@ -73,11 +65,9 @@ ISA vs Microarchitecture
 * Microarchitecture usually changes faster than ISA
 
 
-Fundamentals of Instruction Set Architecture (ISA)
---------------------------------------------------
+## Fundamentals of Instruction Set Architecture (ISA)
 
-Elements of an ISA
-~~~~~~~~~~~~~~~~~~
+### Elements of an ISA
 
 * Instruction sequencing model
 	* control flow vs. data flow
@@ -105,8 +95,7 @@ Elements of an ISA
 * Addressing modes
 
 
-Different types of computer architecture
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Different Types of Computer Architecture
 
 * 栈体系结构
 	* 操作数位于栈的顶部（TOS）
@@ -127,8 +116,7 @@ Different types of computer architecture
 		* **载入-存储** 体系结构：只能用载入和存储指令来访问存储器
 
 
-Different types of addressing modes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Different Types of Addressing Modes
 
 Addressing modes specifies how to obtain the operands from the registers/memory.
 
@@ -137,15 +125,15 @@ Addressing modes specifies how to obtain the operands from the registers/memory.
 * 立即数寻址 (absolute)
 	* use immediate value as address
 * 寄存器间接寻址 (register indirect)
-	* use :math:`GPR[r_{base}]` as address
+	* use $GPR[r_{base}]$ as address
 * 位移量寻址 (displaced or based)
-	* use :math:`offset +GPR[r_{base}]` as address
+	* use $offset + GPR[r_{base}]$ as address
 * 索引寻址 (indexed)
-	* use :math:`GPR[r_{base}]+GPR[r_{index}]` as address
+	* use $GPR[r_{base}] + GPR[r_{index}]$ as address
 * 存储器间接寻址 (memory indirect)
-	* use value at :math:`M[GPR[r_{base}]]` as address
+	* use value at $M[GPR[r_{base}]]$ as address
 * 自动递增寻址 (auto increment)
-	* use :math:`GPR[r_{base}]` as address, but inc. :math:`GPR[r_{base}]` each time
+	* use $GPR[r_{base}]$ as address, but inc. $GPR[r_{base}]$ each time
 * 自动递减寻址 (auto decrement)
 * 比例寻址
 	* 用于索引数组
@@ -161,8 +149,7 @@ Disadvantages of more addressing modes
 	* more work for the complier
 	* more work for the microarchitect
 
-Different types of operations in an ISA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Different Types of Operations in an ISA
 
 * 算数与逻辑：加减乘除，与或，etc.
 * 数据传送：载入-存储
@@ -176,10 +163,9 @@ Different types of operations in an ISA
 * 字符串：移动、比较、搜索
 * 图形：像素与顶点操作、压缩/解压缩操作
 
-Encoding of an ISA
-~~~~~~~~~~~~~~~~~~~
+### Encoding of an ISA
 
-ISA所支持的各种操作通常在一个称为操作码(Opcode)的字段中指定。指令集编码将寻址方式与操作结合在一起
+ISA 所支持的各种操作通常在一个称为操作码 (Opcode) 的字段中指定。指令集编码将寻址方式与操作结合在一起
 
 * **地址标识符**：说明使用哪种寻址方式来访问操作数
 * **定长编码** (Fixed length)：所有指令的大小都相同

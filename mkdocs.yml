@@ -72,8 +72,9 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
 nav:
-  - Welcome to Computer Architecture Learning Notes!: index.md
-  - I. Quantative Approach to Computer Architecture: chapter0.md
-  # - II. Frontend:
-  #   - 1. System Integration & Behavioral Simulation: 1_system_integration_behavioral_simulation.md
-  #   - 2. Submodule Synthesis: 2_submodule_synthesis.md
+  - Welcome to my Learning Notes on Computer Architecture!: 0_index.md
+  - I. Fundamentals of Computer Architecture:
+    - 1. Quantitative Principles of Computer Design: 1_quantitative_principles.md
+    - 2. Introduction to Computer Architecture: 2_introduction_to_computer_architecture.md
+  - II. Memory System:
+    - 1. Concepts of Memory Hierarchy: 3_concepts_of_memory_hierarchy.md
