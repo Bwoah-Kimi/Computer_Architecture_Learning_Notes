@@ -76,5 +76,6 @@ nav:
   - I. Fundamentals of Computer Architecture:
     - 1. Quantitative Principles of Computer Design: 1_quantitative_principles.md
     - 2. Introduction to Computer Architecture: 2_introduction_to_computer_architecture.md
+    - 3. Pipelining: 4_pipelining.md
   - II. Memory System:
-    - 1. Concepts of Memory Hierarchy: 3_concepts_of_memory_hierarchy.md
+    - 1. Memory Hierarchy: 3_memory_hierarchy.md

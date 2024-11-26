@@ -1,4 +1,4 @@
-# Concepts of Memory Hierarchy
+# Basic Concepts of Memory Hierarchy
 
 ## 处理器层次结构中的缓存
 
@@ -128,8 +128,8 @@
 如果 CPU 请求的字不在组中的任何一行，那么就是缓存不命中。高速缓存必须从内存中取出包含这个字的块。
 如果该组中没有空行，那么我们必须从中选择一个非空的行进行替换。 **替换策略** 包括：
 
-    * *最不常使用 (Least-Frequently-Used, LFU)* 策略：替换在过去某个时间窗口内引用次数最少的那一行
-    * *最近最少使用 (Least-Recently-Used, LRU)* 策略：替换最后一次访问时间最久远的那一行
+* *最不常使用 (Least-Frequently-Used, LFU)* 策略：替换在过去某个时间窗口内引用次数最少的那一行
+* *最近最少使用 (Least-Recently-Used, LRU)* 策略：替换最后一次访问时间最久远的那一行
 
 
 ### 全相连映射高速缓存
@@ -151,24 +151,24 @@
 
 假设要写一个已经缓存的字 W:
 
-写命中 (Write hit)，需要更新w在层次结构中紧接着低一层中的副本
+写命中 (Write hit)，需要更新 W 在层次结构中紧接着低一层中的副本
 
-* **直写 (write-through)**：立即将 w 的高速缓存块写回低一层中
+* **直写 (Write-through)**：立即将 W 的高速缓存块写回低一层中
     * 更容易实现，简化数据一致性
     * 每次写都会引起总线流量
     * 如果处理器在直写期间必须等待写操作完成，则称处理器处于 **写入停顿** 状态
     * 减小写入停顿的方案： 增加一个 **写缓冲区** ：数据被写入缓冲区后，处理器可以继续执行
         * 写缓冲区本质上就是一个 FIFO 队列
         * 当存储频率接近于 DRAM 的写入速度时（假设高速缓存的低层存储是主存），写缓冲区可能会发生饱和
-* **写回 (write back)**：当替换算法要驱逐这个块时，才把它写回低一层中
+* **写回 (Write back)**：当替换算法要驱逐这个块时，才把它写回低一层中
     * 由于局部性，能够显著减小总线流量，对多处理器更具有吸引力
-    * 增加复杂性，高速缓存需要为每个高速缓存行维护一个额外的 **修改位 (dirty bit)** ，表明这个告诉缓存块是否被修改过。
+    * 增加复杂性，高速缓存需要为每个高速缓存行维护一个额外的 **修改位 (Dirty bit)** ，表明这个告诉缓存块是否被修改过。
 
 若发生写不命中 (Write miss)
 
-* **写分配 (write-allocate)**：加载相应的第一层中的块到高速缓存中，然后更新这个高速缓存块
+* **写分配 (Write-allocate)**：加载相应的第一层中的块到高速缓存中，然后更新这个高速缓存块
     * 每次不命中都会导致一个块从低一层传到高速缓存
-* **非写分配 (not-write-allocate)**：避开高速缓存，直接将这个字写到低一层
+* **非写分配 (Not-write-allocate)**：避开高速缓存，直接将这个字写到低一层
 
 **直写高速缓存通常是非写分配**， 而 **写回高速缓存通常是写分配**
 
@@ -213,9 +213,9 @@
 
 为了降低不命中处罚，可以考虑采用如下的措施：
 
-    * Early Restart: datapath resumes execution as soon as the requested word of the block is returned.
-    * Requested word first: requested word is transferred from the memory to the cache (and datapath) first.
-    * Non-blocking cache: cache can accept new requests while miss is outstanding. (Out-of-order execution)
+* Early Restart: datapath resumes execution as soon as the requested word of the block is returned.
+* Requested word first: requested word is transferred from the memory to the cache (and datapath) first.
+* Non-blocking cache: cache can accept new requests while miss is outstanding. (Out-of-order execution)
 
 **写策略的影响**
 
