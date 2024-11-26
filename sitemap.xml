@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/</loc>
+         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/0_index/</loc>
          <lastmod>2024-11-26</lastmod>
     </url>
     <url>
-         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/chapter0/</loc>
+         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/1_quantitative_principles/</loc>
+         <lastmod>2024-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/2_introduction_to_computer_architecture/</loc>
+         <lastmod>2024-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://bwoah-kimi.github.io/Computer_architecture_learning_notes/3_concepts_of_memory_hierarchy/</loc>
          <lastmod>2024-11-26</lastmod>
     </url>
 </urlset>
