@@ -579,12 +579,8 @@
 <li>加速比 (Speedup) 的定义为：</li>
 </ul>
 <div class="arithmatex">
-<div class="MathJax_Preview">
-\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}
-</div>
-<script type="math/tex; mode=display">
-\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}
-</script>
+<div class="MathJax_Preview">\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}</div>
+<script type="math/tex; mode=display">\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}</script>
 </div>
 <p>加速比取决于：</p>
 <ul>
@@ -592,12 +588,12 @@
 <li>通过改进执行模式得到的改进，也就是说在为整个程序使用这一执行模式时，任务的运行速度会提高多少倍——<strong>改进加速比</strong></li>
 </ul>
 <div class="arithmatex">
-<div class="MathJax_Preview"> \text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}) </div>
-<script type="math/tex; mode=display"> \text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}) </script>
+<div class="MathJax_Preview">\text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}})</div>
+<script type="math/tex; mode=display">\text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}})</script>
 </div>
 <div class="arithmatex">
-<div class="MathJax_Preview"> \text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}} </div>
-<script type="math/tex; mode=display"> \text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}} </script>
+<div class="MathJax_Preview">\text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}}</div>
+<script type="math/tex; mode=display">\text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}}</script>
 </div>
 <h2 id="_2">处理器性能公式</h2>
 <ul>
@@ -606,12 +602,12 @@
 <li><strong>每条指令的时钟周期数 (Clock cycles per instruction, CPI)</strong></li>
 </ul>
 <div class="arithmatex">
-<div class="MathJax_Preview"> CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}} </div>
-<script type="math/tex; mode=display"> CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}} </script>
+<div class="MathJax_Preview">CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}}</div>
+<script type="math/tex; mode=display">CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}}</script>
 </div>
 <div class="arithmatex">
-<div class="MathJax_Preview"> CPU时间=指令数\times CPI\times 时钟周期时间 </div>
-<script type="math/tex; mode=display"> CPU时间=指令数\times CPI\times 时钟周期时间 </script>
+<div class="MathJax_Preview">CPU时间=指令数\times CPI\times 时钟周期时间</div>
+<script type="math/tex; mode=display">CPU时间=指令数\times CPI\times 时钟周期时间</script>
 </div>
 <ul>
 <li>处理器的性能取决于三个特性：<ul>
@@ -623,13 +619,13 @@
 <li>设计处理器时，有时采用如下公式计算处理器总时钟周期数目：</li>
 </ul>
 <div class="arithmatex">
-<div class="MathJax_Preview"> CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i </div>
-<script type="math/tex; mode=display"> CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i </script>
+<div class="MathJax_Preview">CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i</div>
+<script type="math/tex; mode=display">CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i</script>
 </div>
 <p>其中 <span class="arithmatex"><span class="MathJax_Preview">IC_i</span><script type="math/tex">IC_i</script></span> 表示一个程序中第 <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 个指令的执行次数，<span class="arithmatex"><span class="MathJax_Preview">CPI_i</span><script type="math/tex">CPI_i</script></span> 表示第 <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 个指令的每条指令平均时钟周期数</p>
 <div class="arithmatex">
-<div class="MathJax_Preview"> CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i </div>
-<script type="math/tex; mode=display"> CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i </script>
+<div class="MathJax_Preview">CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i</div>
+<script type="math/tex; mode=display">CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i</script>
 </div>
 
 
