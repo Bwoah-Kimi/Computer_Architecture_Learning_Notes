@@ -80,3 +80,6 @@ nav:
     - 4. Out-of-Order Execution: 5_out_of_order_execution.md
   - II. Memory System:
     - 1. Memory Hierarchy: 3_memory_hierarchy.md
+  - III. GPGPU:
+    - 1. Introduction to GPGPU: 6_introduction_to_gpgpu.md
+    - 2. GPGPU Programming: 7_gpgpu_programming.md
