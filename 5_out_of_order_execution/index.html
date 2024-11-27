@@ -10,13 +10,13 @@
         <meta name="author" content="Bwoah-Kimi">
       
       
-        <link rel="canonical" href="https://bwoah-kimi.github.io/Computer_architecture_learning_notes/1_quantitative_principles/">
+        <link rel="canonical" href="https://bwoah-kimi.github.io/Computer_architecture_learning_notes/5_out_of_order_execution/">
       
       
-        <link rel="prev" href="../0_index/">
+        <link rel="prev" href="../4_pipelining/">
       
       
-        <link rel="next" href="../2_introduction_to_computer_architecture/">
+        <link rel="next" href="../3_memory_hierarchy/">
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>1. Quantitative Principles of Computer Design - Computer Architecture Learning Notes</title>
+        <title>4. Out-of-Order Execution - Computer Architecture Learning Notes</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#out-of-order-execution" class="md-skip">
           跳转至
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1. Quantitative Principles of Computer Design
+              4. Out-of-Order Execution
             
           </span>
         </div>
@@ -309,30 +309,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    1. Quantitative Principles of Computer Design
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../1_quantitative_principles/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -341,44 +321,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#amdahl" class="md-nav__link">
-    <span class="md-ellipsis">
-      Amdahl 定律
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      处理器性能公式
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -430,10 +372,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../5_out_of_order_execution/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4. Out-of-Order Execution
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -442,6 +404,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-idea-of-out-of-order-execution-dynamic-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Idea of Out-of-Order Execution (Dynamic Scheduling)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Idea of Out-of-Order Execution (Dynamic Scheduling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-in-order-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      An In-Order Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -544,20 +550,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#amdahl" class="md-nav__link">
+  <a href="#basic-idea-of-out-of-order-execution-dynamic-scheduling" class="md-nav__link">
     <span class="md-ellipsis">
-      Amdahl 定律
+      Basic Idea of Out-of-Order Execution (Dynamic Scheduling)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Idea of Out-of-Order Execution (Dynamic Scheduling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-in-order-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      An In-Order Pipeline
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      处理器性能公式
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -581,72 +593,27 @@
     
       
     
-    <a href="https://github.com/Bwoah-Kimi/Computer_architecture_learning_notes/raw/main/docs/1_quantitative_principles.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/Bwoah-Kimi/Computer_architecture_learning_notes/raw/main/docs/5_out_of_order_execution.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="_1">计算机设计的量化原理</h1>
+<h1 id="out-of-order-execution">Out-of-Order Execution</h1>
 <div class="admonition info">
 <p class="admonition-title">本节内容</p>
-<p>主要介绍计算机设计的量化原理，包括 Amdahl 定律、处理器性能公式等。
-对应《计算机体系结构：量化研究方法》的第一章</p>
+<p>本节内容主要来自《计算机体系结构：量化研究方法》第四章，以及 CMU 447 第 12 讲。</p>
 </div>
-<h2 id="amdahl">Amdahl 定律</h2>
+<h2 id="basic-idea-of-out-of-order-execution-dynamic-scheduling">Basic Idea of Out-of-Order Execution (Dynamic Scheduling)</h2>
+<h3 id="an-in-order-pipeline">An In-Order Pipeline</h3>
 <ul>
-<li>使用某种快速执行模式获得的性能改进受限于可使用该种模式的时间比例</li>
-<li>加速比 (Speedup) 的定义为：</li>
+<li>Problem: A true data dependency stalls dispatch of younger instructions into functional units</li>
+<li>Dispatch: Act of sending an instruction into a functional (execution) unit</li>
 </ul>
-<div class="arithmatex">
-<div class="MathJax_Preview">\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}</div>
-<script type="math/tex; mode=display">\text{加速比}=\frac{\text{整个任务在采用该项改进时的性能}}{\text{整个任务在未采用该项改进时的性能}}</script>
-</div>
-<p>加速比取决于：</p>
-<ul>
-<li>原计算机计算时间中可改进部分所占的比例——<strong>改进比例</strong></li>
-<li>通过改进执行模式得到的改进，也就是说在为整个程序使用这一执行模式时，任务的运行速度会提高多少倍——<strong>改进加速比</strong></li>
-</ul>
-<div class="arithmatex">
-<div class="MathJax_Preview">\text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}})</div>
-<script type="math/tex; mode=display">\text{新执行时间}=\text{原执行时间}\times ((1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}})</script>
-</div>
-<div class="arithmatex">
-<div class="MathJax_Preview">\text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}}</div>
-<script type="math/tex; mode=display">\text{总加速比}=\frac{\text{原执行时间}}{\text{新执行时间}}=\frac{1}{(1-\text{改进比例})+\frac{\text{改进比例}}{\text{改进加速比}}}</script>
-</div>
-<h2 id="_2">处理器性能公式</h2>
-<ul>
-<li>时钟周期</li>
-<li>指令路径长度，或指令数 (Instruction Count, IC)</li>
-<li><strong>每条指令的时钟周期数 (Clock cycles per instruction, CPI)</strong></li>
-</ul>
-<div class="arithmatex">
-<div class="MathJax_Preview">CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}}</div>
-<script type="math/tex; mode=display">CPI=\frac{\text{程序的CPU时钟周期数}}{\text{指令数}}</script>
-</div>
-<div class="arithmatex">
-<div class="MathJax_Preview">CPU时间=指令数\times CPI\times 时钟周期时间</div>
-<script type="math/tex; mode=display">CPU时间=指令数\times CPI\times 时钟周期时间</script>
-</div>
-<ul>
-<li>处理器的性能取决于三个特性：<ul>
-<li>时钟周期：硬件技术与组成</li>
-<li>每条指令的时钟周期数：组成与指令集体系结构</li>
-<li>指令数：指令集体系结构与编译器技术</li>
-</ul>
-</li>
-<li>设计处理器时，有时采用如下公式计算处理器总时钟周期数目：</li>
-</ul>
-<div class="arithmatex">
-<div class="MathJax_Preview">CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i</div>
-<script type="math/tex; mode=display">CPU时钟周期=\Sigma^{n}_{i=1}IC_i\times CPI_i</script>
-</div>
-<p>其中 <span class="arithmatex"><span class="MathJax_Preview">IC_i</span><script type="math/tex">IC_i</script></span> 表示一个程序中第 <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 个指令的执行次数，<span class="arithmatex"><span class="MathJax_Preview">CPI_i</span><script type="math/tex">CPI_i</script></span> 表示第 <span class="arithmatex"><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 个指令的每条指令平均时钟周期数</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i</div>
-<script type="math/tex; mode=display">CPI=\frac{\Sigma^{n}_{i=1}IC_i\times CPI_i}{指令数}=\Sigma^{n}_{i=1}\frac{IC_i}{指令数}\times CPI_i</script>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Under development!</p>
 </div>
 
 
@@ -680,7 +647,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月26日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月27日</span>
   </span>
 
     
@@ -739,7 +706,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../0_index/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Welcome to my Learning Notes on Computer Architecture!">
+          <a href="../4_pipelining/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 3. Pipelining">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -749,20 +716,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Welcome to my Learning Notes on Computer Architecture!
+                3. Pipelining
               </div>
             </div>
           </a>
         
         
           
-          <a href="../2_introduction_to_computer_architecture/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2. Introduction to Computer Architecture">
+          <a href="../3_memory_hierarchy/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1. Memory Hierarchy">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                2. Introduction to Computer Architecture
+                1. Memory Hierarchy
               </div>
             </div>
             <div class="md-footer__button md-icon">

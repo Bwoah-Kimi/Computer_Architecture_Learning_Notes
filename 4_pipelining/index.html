@@ -16,7 +16,7 @@
         <link rel="prev" href="../2_introduction_to_computer_architecture/">
       
       
-        <link rel="next" href="../3_memory_hierarchy/">
+        <link rel="next" href="../5_out_of_order_execution/">
       
       
       <link rel="icon" href="../figs/pku_logo_red.png">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#basic-concepts-of-cpu-pipelining" class="md-skip">
+        <a href="#cpu-pipelining" class="md-skip">
           跳转至
         </a>
       
@@ -363,6 +363,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3. Pipelining
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -373,6 +384,352 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipelining-basic-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining: Basic Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining: Basic Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-ideal-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Ideal Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-pipeline-not-an-ideal-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction Pipeline: Not an Ideal Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="引言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 指令集基础知识
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC 指令集的简单实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC 处理器的经典五级流水线实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      流水线的主要障碍——流水线冒险
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流水线的主要障碍——流水线冒险">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      带有停顿的流水线性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      结构冒险
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-dependence" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据冒险 (Data dependence)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据冒险 (Data dependence)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-fundamental-ways-of-handling-flow-dependences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Five fundamental ways of handling flow dependences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approaches-to-dependence-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approaches to Dependence Detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-dependence" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制冒险 (Control dependence)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="控制冒险 (Control dependence)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamental-ways-of-handling-control-dependences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamental Ways of Handling Control Dependences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-branch-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Branch Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-branch-prediction-hardware-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Branch Prediction (hardware-based)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipelining-and-precise-exceptions-preserving-sequential-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining and Precise Exceptions: Preserving Sequential Semantics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining and Precise Exceptions: Preserving Sequential Semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-cycle-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-cycle Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-cycle Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-vs-interrupts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions vs. Interrupts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precise-exceptions-and-interrupts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precise Exceptions and Interrupts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensuring-precise-exceptions-in-pipelining" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensuring Precise Exceptions in Pipelining
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ensuring Precise Exceptions in Pipelining">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reorder-buffer-rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reorder Buffer (ROB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history-buffer-hb" class="md-nav__link">
+    <span class="md-ellipsis">
+      History Buffer (HB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-file-ff-rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future File (FF) + ROB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelining-issues-branch-mispredictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining Issues: Branch Mispredictions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining Issues: Branch Mispredictions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpointing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_out_of_order_execution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Out-of-Order Execution
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -468,6 +825,320 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipelining-basic-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining: Basic Idea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining: Basic Idea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-ideal-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Ideal Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-pipeline-not-an-ideal-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction Pipeline: Not an Ideal Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="引言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risc-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC-V 指令集基础知识
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC 指令集的简单实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      RISC 处理器的经典五级流水线实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      流水线的主要障碍——流水线冒险
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="流水线的主要障碍——流水线冒险">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      带有停顿的流水线性能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      结构冒险
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-dependence" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据冒险 (Data dependence)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据冒险 (Data dependence)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-fundamental-ways-of-handling-flow-dependences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Five fundamental ways of handling flow dependences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approaches-to-dependence-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approaches to Dependence Detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-dependence" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制冒险 (Control dependence)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="控制冒险 (Control dependence)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamental-ways-of-handling-control-dependences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamental Ways of Handling Control Dependences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-branch-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Static Branch Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-branch-prediction-hardware-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dynamic Branch Prediction (hardware-based)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipelining-and-precise-exceptions-preserving-sequential-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining and Precise Exceptions: Preserving Sequential Semantics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining and Precise Exceptions: Preserving Sequential Semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-cycle-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-cycle Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-cycle Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-vs-interrupts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exceptions vs. Interrupts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precise-exceptions-and-interrupts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precise Exceptions and Interrupts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensuring-precise-exceptions-in-pipelining" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ensuring Precise Exceptions in Pipelining
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ensuring Precise Exceptions in Pipelining">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reorder-buffer-rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reorder Buffer (ROB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history-buffer-hb" class="md-nav__link">
+    <span class="md-ellipsis">
+      History Buffer (HB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-file-ff-rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future File (FF) + ROB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelining-issues-branch-mispredictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipelining Issues: Branch Mispredictions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipelining Issues: Branch Mispredictions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkpointing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -493,7 +1164,460 @@
   
 
 
-<h1 id="basic-concepts-of-cpu-pipelining">Basic Concepts of CPU Pipelining</h1>
+<h1 id="cpu-pipelining">CPU Pipelining</h1>
+<div class="admonition info">
+<p class="admonition-title">本节内容</p>
+<p>本节内容主要来自 CMU 447 第 7、8 讲，以及《计算机体系结构：量化研究方法》附录 C：流水线基础与中级概念。</p>
+</div>
+<h2 id="pipelining-basic-idea">Pipelining: Basic Idea</h2>
+<ul>
+<li>divide the instruction processing style into distinct stages of processing</li>
+<li>ensure that there are enough hardware resources to process one instruction in each stage</li>
+<li>process a different instruction in each stage</li>
+<li>thus <strong>increasing instruction throughput</strong></li>
+</ul>
+<h3 id="an-ideal-pipeline">An Ideal Pipeline</h3>
+<ul>
+<li>increase throughput with little increase in cost (hardware cost)</li>
+<li>repetition of identical operations</li>
+<li>repetition of independent operations</li>
+<li>uniformly partitionable suboperations</li>
+</ul>
+<h3 id="instruction-pipeline-not-an-ideal-pipeline">Instruction Pipeline: Not an Ideal Pipeline</h3>
+<ul>
+<li>diffrent instructions -&gt; not all instructions need the same stages</li>
+<li>forcing different instructions to go through the same pipeline stages</li>
+<li>external fragmentation: some pipeline stages idle for some instructions</li>
+<li>different pipeline stages -&gt; not the same latency</li>
+<li>need to force each stage to be controlled by the same clock</li>
+<li>internal fragmentation (some pipeline stages are too fast but all take the same clock cycle)</li>
+<li>instructions are not independent of each other</li>
+<li>need to detect and resolve inter-instruction dependencies to ensure the pipeline provides correct values -&gt; pipeline stalls</li>
+</ul>
+<h2 id="_1">引言</h2>
+<h3 id="risc-v">RISC-V 指令集基础知识</h3>
+<ul>
+<li>载入-存储体系结构 ISA</li>
+<li>所有数据操作都是对寄存器中数据的操作，通常会改变整个寄存器</li>
+<li>只有载入和存储操作会影响存储器</li>
+<li>格式指令相对固定，所有指令位宽通常相同</li>
+</ul>
+<h3 id="risc">RISC 指令集的简单实现</h3>
+<ul>
+<li>关注 RISC 体系结构中的一个整数子集的流水线，包括：载入-存储字、分支和整数 ALU 操作</li>
+<li>RISC 子集的每条指令都可以在最多5个时钟周期内实现：</li>
+<li>取指周期 (Instruction Fetch, IF)<ul>
+<li>将程序计数器发送到存储器，从存储器中提取当前指令</li>
+<li>向程序计数器 +4（每条指令的长度为四个字节，将程序计数器更新到下一条顺序指令</li>
+</ul>
+</li>
+<li>指令译码/读寄存器周期 (Instruction decode and register operand fetch, ID/RF)<ul>
+<li>对指令译码，并且从寄存器堆中读取与寄存器源说明符相对应的寄存器</li>
+<li>在读取寄存器时对其进行相等测试，以确定可能的分支</li>
+<li>在后续需要时，对指令的偏移量字段进行符号扩展，并增加到程序计数器上，计算出可能的分支目标地址</li>
+<li>指令译码与寄存器的读取的并行执行的，因为 RISC 体系结构中，<strong>寄存器说明符位于固定位置</strong>，这一技术称为<strong>固定字段译码</strong></li>
+<li>对于载入和 ALU 指令的立即数操作，立即数字段总是在相同的位置，从而可以进行符号扩展</li>
+</ul>
+</li>
+<li>执行/有效地址周期 (Execute/Evaluate memory address, EX/AG)<ul>
+<li>ALU 对上一周其中准备的操作数进行操作，根据指令类型执行四种操作之一</li>
+<li>存储器访问——ALU 将基址寄存器和偏移量加到一起，形成有效地址</li>
+<li>寄存器-寄存器 ALU 指令——ALU 对读自寄存器堆的值执行由 ALU 操作码指定的操作</li>
+<li>寄存器-立即数 ALU 指令——ALU 对读自寄存器堆的第一个值和符号扩展立即数执行由 ALU 操作码指定的操作</li>
+<li>条件分支——判断条件是否为真</li>
+<li>在载入-存储体系结构中，有效地址与执行周期可以合并到一个时钟周期当中，这是因为没有指令需要同时计算数据地址并对数据执行操作</li>
+</ul>
+</li>
+<li>存储器访问 (Memory operand fetch, MEM)</li>
+<li>写回周期 (Store/Writeback result, WB)</li>
+</ul>
+<h3 id="risc_1">RISC 处理器的经典五级流水线实现</h3>
+<ul>
+<li>使用分离的指令存储器与数据存储器，通常用分离的指令缓存和数据缓存实现</li>
+<li>在两个阶段都使用了寄存器堆：在 ID 中进行读取、在 WB 中进行写入</li>
+<li>流水化的基本性能问题</li>
+<li>流水线产生延迟</li>
+<li>流水线各级之间失衡</li>
+<li>流水线引入额外的开销</li>
+<li>流水线中的指令并非相互独立的，可能存在依赖关系</li>
+</ul>
+<h2 id="_2">流水线的主要障碍——流水线冒险</h2>
+<ul>
+<li>有一些称为冒险的情形，阻止指令流中的下一条指令在自己指定的时钟周期内执行，从而导致流水线停顿</li>
+<li>冒险降低了流水化所获得的理想加速比的性能</li>
+<li>三种类型的冒险：<strong>结构冒险</strong>、<strong>数据冒险</strong>、<strong>控制冒险</strong></li>
+</ul>
+<h3 id="_3">带有停顿的流水线性能</h3>
+<ul>
+<li><span class="arithmatex"><span class="MathJax_Preview">流水化加速比=\frac{非流水化指令平均执行时间}{流水化指令平均执行时间}=\frac{非流水化CPI}{流水化CPI}\times \frac{非流水化时钟周期}{流水化时钟周期}</span><script type="math/tex">流水化加速比=\frac{非流水化指令平均执行时间}{流水化指令平均执行时间}=\frac{非流水化CPI}{流水化CPI}\times \frac{非流水化时钟周期}{流水化时钟周期}</script></span></li>
+<li><span class="arithmatex"><span class="MathJax_Preview">流水化CPI=1+每条指令的流水线停顿时钟周期</span><script type="math/tex">流水化CPI=1+每条指令的流水线停顿时钟周期</script></span></li>
+<li>如果忽略流水话的周期时间开销，并假定流水级之间达到完美平衡，则两个处理器的周期时间相等，由此得到：
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">加速比=\frac{非流水化CPI}{1+每条指令的流水线停顿周期}</span><script type="math/tex">加速比=\frac{非流水化CPI}{1+每条指令的流水线停顿周期}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">加速比=\frac{非流水化CPI}{1+每条指令的流水线停顿周期}</span><script type="math/tex">加速比=\frac{非流水化CPI}{1+每条指令的流水线停顿周期}</script></span></script></span></li>
+<li>简单考虑：所有指令的周期数都相同，并且必然等于流水线级数（即<strong>流水线深度</strong>），非流水化 CPI 等于流水线深度，则有：
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">加速比=\frac{流水线深度}{1+每条指令的流水线停顿周期}</span><script type="math/tex">加速比=\frac{流水线深度}{1+每条指令的流水线停顿周期}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">加速比=\frac{流水线深度}{1+每条指令的流水线停顿周期}</span><script type="math/tex">加速比=\frac{流水线深度}{1+每条指令的流水线停顿周期}</script></span></script></span></li>
+<li>如果没有流水线停顿，则可以得到：<strong>流水化可以使性能提高的倍数为流水线深度</strong></li>
+</ul>
+<h3 id="_4">结构冒险</h3>
+<ul>
+<li>在重叠执行模式下，如果硬件无法同时支持指令的所有组合方式，可能会出现资源冒险，从而导致结构冒险</li>
+<li>可能发生在不太常用的特殊用途功能单元，通常并非性能瓶颈</li>
+</ul>
+<h3 id="data-dependence">数据冒险 (Data dependence)</h3>
+<ul>
+<li>假设指令i按照程序顺序出现在指令 j 之前，两个指令都使用寄存器 x，可能出现三种冒险：</li>
+<li>Flow dependence - read after write (RAW)：当指令 j 对寄存器 x 的读取发生在指令 i 对寄存器 x 的写之前，就会发生 RAW 冒险</li>
+<li>Anti dependence - write after read (WAR)：当指令 i 对寄存器 x 的读取发生在指令 j 对寄存器 x 的写入之后，这时指令 i 会使用错误的 x 值</li>
+<li>Output dependence - write after write (WAW)：当指令 i 对寄存器 x 的写入发生在指令 j 对寄存器 x 的写入之后时，寄存器 x 会传送错误的值  </li>
+<li>For all of them, we need to ensure semantics of the program is correct.</li>
+<li>Flow dependences always need to be obeyed because they constitute true dependence on a value.</li>
+<li>Anti and output dependences exist due to limited number of architectural registers. They depend on a name, not a value.</li>
+</ul>
+<h4 id="five-fundamental-ways-of-handling-flow-dependences">Five fundamental ways of handling flow dependences</h4>
+<ul>
+<li>detect and wait until value is available in register file</li>
+<li>detect and <strong>forward/bypass</strong> data to dependent instruction</li>
+<li>来自 EX/MEM 和 MEM/WB 流水线寄存器的 ALU 结果总是被反馈回 ALU 的输入端</li>
+<li>如果<strong>前递硬件</strong>检测到前一个 ALU 操作已经对当前 ALU 操作的源寄存器进行了写操作，则控制逻辑选择前递结果作为 ALU 输入，而不是选择从寄存器堆中读取的值</li>
+<li>ALU 输入既可以使用来自相同流水线寄存器的前递输入，也可以使用来自不同流水线寄存器的前递输入</li>
+<li>可以将前递技术加以推广，将结果直接传送给所需的功能单元</li>
+<li>detect and eliminate the dependence at the software level</li>
+<li>predict the needed values, execute "speculatively", and verify</li>
+<li>do something else (fine-grained multithreading), therefore no need to detect</li>
+</ul>
+<h4 id="interlocking">Interlocking</h4>
+<ul>
+<li>流水线互锁会检测冒险，并<strong>使流水线停顿</strong>，直到该冲突被清除</li>
+<li>在这种情况下，互锁使得流水线停顿，让希望使用某一数据的指令等待，直到源指令生成该数据为止</li>
+</ul>
+<h4 id="approaches-to-dependence-detection">Approaches to Dependence Detection</h4>
+<ul>
+<li><strong>Scoreboarding</strong></li>
+<li>each register in register file has a <em>Valid bit</em> associated with it</li>
+<li>an instruction that is writing to the register resets the valid bit</li>
+<li>an instruction in Decode stage checks if all its source and destination registers are valid, and stall the instruction if not valid</li>
+<li>Pro: simple 1 bit register</li>
+<li>Con: need to stall for all types of dependences</li>
+<li><strong>Combinational dependence check logic</strong></li>
+<li>special logic that checks if any instruction in later stages is supposed to write to any source register of the instruction that is being decoded</li>
+<li>Pro: no need to stall on anti and output dependences</li>
+<li>Con: logic is more complex</li>
+</ul>
+<h3 id="control-dependence">控制冒险 (Control dependence)</h3>
+<ul>
+<li>Data dependence on the Instruction Pointer/Program Counter</li>
+<li>All instructions are dependent on previous ones</li>
+<li>If the fetched instruction is a <strong>non-control-flow instruction</strong></li>
+<li>next fetch PC is the address of the next sequential instruction</li>
+<li>easy to determine if we know the size of the fetched instruction</li>
+<li>If the instruction that is fetched is a <strong>control-flow instruction</strong></li>
+<li>need to determine the next Fetch PC</li>
+<li>在执行一个分支后，更新的程序计数器的值可能等于（也可能不等于）当前值加 4.</li>
+<li>如果分支将程序计数器地址改为其目标地址，则它<strong>选中分支</strong></li>
+<li>如果程序计数器的值依然为当前值加4，则它<strong>未选中分支</strong></li>
+</ul>
+<h4 id="fundamental-ways-of-handling-control-dependences">Fundamental Ways of Handling Control Dependences</h4>
+<ul>
+<li><strong>Stall</strong> the pipeline until we know the next fetch address</li>
+<li>wait for the true-dependence on PC to resolve</li>
+<li><strong>Branch Prediction</strong>: Guess the next fetch address</li>
+<li>One method: always guess NextPC = PC + 4 -&gt; a form of <em>next fetch address prediction</em><ul>
+<li>Idea: Maximize the chances that the next sequential instruction is the next instruction to be executed</li>
+<li>Software level: <strong>Profile guided code positioning</strong>: lay out the control graph such that the "likely next instruction is on the not-taken path of a branch</li>
+<li>Hardware level: Trace cache</li>
+<li>Idea: Get rid of control flow instructions/minimize their occurrence</li>
+<li>Get rid of unnecessary control flow instructions -&gt; <strong>predicate combining</strong><ul>
+<li>combine predicate operations to feed a single branch instruction instead of having one branche for each</li>
+<li>use <strong>condition registers</strong> to store and operate on predicates</li>
+<li>Pro: fewer branches in code</li>
+<li>Con: possibly unnecessary work</li>
+</ul>
+</li>
+<li>Convert control dependences into data dependences -&gt; <strong>predicated execution</strong><ul>
+<li>Pro: Always-not-taken prediction works better; compiler has more freedom to optimize the code</li>
+<li>Con: Useless work: some instructions fetched/executed but discarded</li>
+<li>requires additional ISA support</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Idea: Predict the next fetch address
+  Requires three things to be predicted at fetch stage:<ul>
+<li>Whether the fetched instruction is a branch</li>
+<li>can be accomplished using a BTB</li>
+<li>Conditional branch direction</li>
+<li>Branch target address (if taken)</li>
+<li>Observation: target address remains the same for a conditional direct branch across dynamic instances</li>
+<li>Idea: store the target address from previous instance and access it with PC</li>
+<li>called <strong>Branch Target Buffer (BTB)</strong>, or Branch Target Address Cache</li>
+</ul>
+</li>
+<li><strong>Branch Delay Slot</strong>: Employ delayed branching</li>
+<li>Change the semantics of a branch instruction: Branch after N instructions, branch after N cycles</li>
+<li>Idea: Delay the execution of a branch. N instructions that come after the branch are always executed regardless of branch direction</li>
+<li>Problem: Find instructions to fill the delay slots: branch must be independent of delay slot instructions, otherwise fix-up code is needed</li>
+<li>Fancy delayed branching: <em>Delayed branch with squashing</em>, if the branch is not taken, the delay slot instruction is not executed</li>
+<li>Advantages: Keeps the pipeline full with useful instructions in a simple way assuming that:<ul>
+<li>number of delay slots == number of instructions to keep the pipeline full before the branch resolves</li>
+<li>all delay slots can be filled with useful instructions</li>
+</ul>
+</li>
+<li>Disadvantages:<ul>
+<li>Not easy to fill the delay slots</li>
+<li>Ties ISA semantics to hardware implementation: could hinder future microarchitecture development</li>
+</ul>
+</li>
+<li><strong>Fine-grained Multithreading</strong></li>
+<li>Idea: Hardware has multiple thread contexts. Each cycle, fetch engine fetches from a different thread<ul>
+<li>By the time the fetched branch resolves, no instruction is fetched from the same thread</li>
+<li>Branch/Instruction resolution latency overlapped with execution of other threads' instructions</li>
+</ul>
+</li>
+<li>Pro:<ul>
+<li>No logic needed for handling control and data dependences within a thread</li>
+<li>Improved system throughput, latency tolerance, utilization</li>
+</ul>
+</li>
+<li>Con:<ul>
+<li>Single thread performance suffers</li>
+<li>Extra logic for keeping contexts</li>
+<li>Does not overlap latency if not enough threads to cover the whole pipeline</li>
+<li>Resource contention between threads in caches and memory</li>
+</ul>
+</li>
+<li><strong>Predicated Execution</strong>: Eliminate control-flow instructions</li>
+<li>Idea: Compiler converts control dependence into data dependence -&gt; branch is eliminated</li>
+<li>Each instruction has a predicate bit set based on the predicate computation</li>
+<li>Only instructions with TRUE predicates are committed (others turned into NOPs)</li>
+<li>Advantages:<ul>
+<li>Eliminates mispredications for hard-to-predict branches</li>
+<li>Enables code optimizations hindered by the control dependency</li>
+</ul>
+</li>
+<li>Disadvantages:<ul>
+<li>Causes useless work for branches that are easy to predict</li>
+<li>Additional hardware and ISA support</li>
+<li>Cannot eliminate all hard to predict branches</li>
+</ul>
+</li>
+<li><strong>Multipath Execution</strong>: Fetch from both possible paths</li>
+<li>Idea: execute both paths after a conditional branch</li>
+<li>Advantage: improves performance if misprediction cost &gt; useless work; no ISA changes needed</li>
+<li>Disadvantage: potentially growing paths; more complex hardware</li>
+</ul>
+<h4 id="static-branch-prediction">Static Branch Prediction</h4>
+<ul>
+<li>Always not-taken</li>
+<li>Simple to implement: no need for BTB</li>
+<li>Low accuracy ~30%-40%</li>
+<li>Always taken</li>
+<li>No direction prediction</li>
+<li>Better accuracy: 60%-70%</li>
+<li>Backward taken, forward not taken (BTFN)</li>
+<li>Profile-based</li>
+<li>Idea: Compiler determines likely direction for each branch using a profile run -&gt; encodes that direction as a hint bit in the branch instruction format</li>
+<li>Pro: per branch prediction</li>
+<li>Con: requires hint bits in the branch instruction format</li>
+<li>accuracy depends on dynamic branch behaviour</li>
+<li>Program-based</li>
+<li>Idea: use heuristics based on program analysis to determine statcially-predicted direction</li>
+<li>Programmer-based</li>
+<li>Idea: Programmer provides the statically-predicted direction</li>
+<li>Via <em>pragmas</em> in the programming language that qualify a branch as likely-taken versus likely-not-taken</li>
+<li>All previous techniques can be combined</li>
+<li>Disadvantages of these techniques:</li>
+<li>Cannot adapt to dynamic changes in branch behaviour</li>
+</ul>
+<h4 id="dynamic-branch-prediction-hardware-based">Dynamic Branch Prediction (hardware-based)</h4>
+<ul>
+<li>Last time predictor</li>
+<li>Single bit per branch (stored in BTB)</li>
+<li>Indicats which direction branch went last time it executed</li>
+<li>Downside: always mispredicts the last iteration and the first iteration of a loop branch<ul>
+<li>Accuracy for a loop with N iterations = (N-2)/N</li>
+</ul>
+</li>
+<li>Solution: add hysteresis to the predictor so taht prediction does not change on a single different outcome</li>
+<li>Two-Bit Counter Based Prediction</li>
+<li>Each branch associated with a two-bit counter</li>
+<li>One more bit provides <em>hysteresis</em></li>
+<li>Accuracy for a loop with N iterations = (N-1)/N</li>
+<li>Downside: More hardware cost</li>
+<li>Global Branch Correlation</li>
+<li>Recently executed branch outcome in the execution path is correlated with the outcome of the next branch</li>
+<li>Idea: Associate branch outcomes with "global T/NT history" of an branches</li>
+<li>Implementation:<ul>
+<li>Keep track of the "global T/NT history" of all branches in a register -&gt; <strong>Global History Register (GHR)</strong></li>
+<li>Use GHR to index into a table that recorded the outcome that was seen for each GHR value in the recent past -&gt; <strong>Pattern History Table</strong></li>
+</ul>
+</li>
+<li><strong>Two Level Global Branch Prediction</strong><ul>
+<li>First level: Global branch history register (N bits) -&gt; the direction of last N branches</li>
+<li>Second level: Table of saturating counters for each history entry -&gt; the direction the branch took the last time the same history was seen</li>
+</ul>
+</li>
+<li>Improving Global Predictor Accuracy<ul>
+<li>Add more context information to the global predictor to take into account which branch is being predicted</li>
+<li><em>Gshare predictor</em>: GHR hashed with the Branch PC</li>
+</ul>
+</li>
+<li>Local Branch Correlation</li>
+<li>Idea: Have a per-branch history register</li>
+<li>Associated the predicted outcome of a branch with "T/NT history" of the same branch</li>
+<li>Make a prediction based on the outcome of the branch the last time the same local branch history was encountered</li>
+<li>Uses two level of history (Per-branch history register + history at that history register value )<ul>
+<li>Fisrt level: a set of local history registers</li>
+<li>Second level: table of saturating counters for each history entry</li>
+</ul>
+</li>
+<li>Hybrid Branch Predictors</li>
+<li>Idea: use more than one type of predictor (i.e., multiple algorithms) and select the best prediction</li>
+<li>Advantages: better accuracy, reduced warmup time</li>
+<li>Biased Branches</li>
+<li>Observation: many branches are biaesd in one direction</li>
+<li>Problem: these branches <em>pollute</em> the branch prediction structures</li>
+<li>Solution: detect such biased branches, and predict them with a simpler predictor</li>
+</ul>
+<h2 id="pipelining-and-precise-exceptions-preserving-sequential-semantics">Pipelining and Precise Exceptions: Preserving Sequential Semantics</h2>
+<h3 id="multi-cycle-execution">Multi-cycle Execution</h3>
+<ul>
+<li>Not all instrutions take the same amount of time for execution</li>
+<li>Idea: Have multiple different functional units that take different number of cycles</li>
+<li>Can be pipelined or not pipelined</li>
+<li>Can let independent instructions start execution on a different functional unit before a previous long-latency instruction finishes execution</li>
+</ul>
+<h4 id="exceptions-vs-interrupts">Exceptions vs. Interrupts</h4>
+<ul>
+<li>Cause</li>
+<li>Exceptions: internal to the running thread</li>
+<li>Interrupts: external to the running thread</li>
+<li>When to handle</li>
+<li>Exceptions: when detected and known to be non-speculative</li>
+<li>Interrupts: when convenient</li>
+</ul>
+<h4 id="precise-exceptions-and-interrupts">Precise Exceptions and Interrupts</h4>
+<p>The architectural state should be consistent when the exception/interrupt is ready to be handled.</p>
+<ol>
+<li>All previous instructions should be completely retired.</li>
+<li>
+<p>No later instruction should be retired.</p>
+</li>
+<li>
+<p>Why Precise Exceptions?</p>
+</li>
+<li>Semantics of the von Neumann model ISA specifies it</li>
+<li>Aids software debugging</li>
+<li>Enables easy recovery from exceptions, e.g. page faults</li>
+<li>Enables easily restartable processes</li>
+<li>Enables traps into software (e.g. software implemented opcodes)</li>
+</ol>
+<h3 id="ensuring-precise-exceptions-in-pipelining">Ensuring Precise Exceptions in Pipelining</h3>
+<h4 id="reorder-buffer-rob">Reorder Buffer (ROB)</h4>
+<ul>
+<li>Idea: Complete instructions <strong>out-of-order</strong>, but reorder them before making results visible to architectural state（允许指令乱序执行，强制它们<strong>顺序</strong>提交）</li>
+<li>When instruction is decoded it reserves an entry in the ROB</li>
+<li>When instruction completes, it writes result into ROB entry</li>
+<li>When instruction oldest in ROB and it has completed without exceptions, its result moved to register file or memory</li>
+<li>重排序缓冲区 (ROB) 保存已经完成执行但还没有提交的指令结果</li>
+<li>An ROB entry consists of:</li>
+<li>DestRegID, DestRegVal</li>
+<li>StoreAddr, StoreData</li>
+<li>PC</li>
+<li>Valid bits for reg/data and control bits</li>
+<li>Exc?</li>
+<li>Problem: results first written to ROB, then to register file at commit time, what if a later operation needs a value in the ROB?</li>
+<li>Context addressable memory (CAM): Search the reorder buffer in a particular order to find the wanted register value (very complex when ROB becomes bigger, could become the critical path)</li>
+<li>Use <strong>indirection</strong><ul>
+<li>access register file first</li>
+<li>if register not valid, register file stores the ID of the ROB entry that contains (or will contain) the value of the register</li>
+<li>practically the <strong>mapping of the register to a ROB entry</strong>: register file maps the register to a ROB entry if there is an in-flight instruction writing to the register</li>
+<li>access reorder buffer next</li>
+</ul>
+</li>
+<li>Important: <strong>Register Renaming</strong> with a Reorder Buffer</li>
+<li>Output and anti dependences are not true dependences. They exist due to lack of register IDs in the ISA</li>
+<li>The register ID is renamed to the reorder buffer entry that will hold the register's value<ul>
+<li>Register ID -&gt; ROB ID</li>
+<li>Architectural register ID -&gt; Physical register ID</li>
+</ul>
+</li>
+<li>Reorder Buffer Storage Cost</li>
+<li>Idea: Reduce ROB entry storage by specializing for different instruction types</li>
+<li>In-Order Pipeline with Reorder Buffer</li>
+<li>Decode (D): Access regfile/ROB, allocate entry in ROB, check if instruction can execute, if so <strong>dispatch</strong> execution</li>
+<li>Execute (E): Instructions can complete out-of-order</li>
+<li>Completion (R):Write result to reorder buffer</li>
+<li>Retirement/Commit (W): Check for exceptions, if none, write result to regfile/memory; else, flush pipeline and start from exception handler</li>
+<li><strong>In-order dispatch/execution, out-of-order completion, in-order retirement</strong></li>
+<li>Reorder Buffer Tradeoffs</li>
+<li>Advantages:<ul>
+<li>Comceptually simple for supporting precise exceptions</li>
+<li>Can eliminate false dependences</li>
+</ul>
+</li>
+<li>Disadvantages:<ul>
+<li>Reorder buffer needs to be accessed to get the results that are yet written to the regfile</li>
+<li>CAM or indirection</li>
+</ul>
+</li>
+<li>Other solutions to eliminate the disadvantages: history buffer, future file, checkpointing</li>
+</ul>
+<h4 id="history-buffer-hb">History Buffer (HB)</h4>
+<ul>
+<li>Idea: Update the register file when instruction completes, but <strong>undo updates</strong> when an exception occurs</li>
+<li>When instruction is decoded, it reserves an HB entry</li>
+<li>When the instruction completes, it stores the old value of its destination in the HB</li>
+<li>When instruction is oldest and no exceptions/interrupts, the HB entry is discarded</li>
+<li>When instruction is oldest and an exception needs to be handled, old values in the HB are written back into the architectural state from tail to head</li>
+<li>Advantage:</li>
+<li>Register file contains up-to-date values for incoming instructions</li>
+<li>Disadvantage:</li>
+<li>Need to read the old value of the destination register</li>
+<li>Need to unwind the history buffer upon an exception -&gt; increased exception/interrupt handling latency</li>
+</ul>
+<h4 id="future-file-ff-rob">Future File (FF) + ROB</h4>
+<ul>
+<li>Idea: Keep two register files (speculative and architecutural)</li>
+<li>Arch reg file: Updated in program order for precise exceptions</li>
+<li>Future reg file: Updated as soon as an instruction completes(if the instruction is the youngest one to write to a register)</li>
+<li>Future file is used for fast access to latest register values (speculative state) -&gt; Frontend register file</li>
+<li>Architectural file is used for state recovery on exceptions (architectural state) -&gt; Backend register file</li>
+<li>Advantage: no need to read new values from ROB or the old value of the destination register</li>
+<li>Disadvantage:</li>
+<li>multiple register files -&gt; more complex design</li>
+<li>need to copy arch. reg. file to future file on an exception</li>
+<li>In-Order Pipeline with Future File and ROB</li>
+<li>Decode (D): Access future file, allocate entry in ROB, check if instruction can execute, if so <strong>dispatch</strong> instruction</li>
+<li>Execute (E): Instructions can complete out-of-order</li>
+<li>Completion (R): Write result to reorder buffer and future file</li>
+<li>Retirement/Commit (W): Check for exceptions; if none, write result to architectural register file or memory; else, flush pipeline, copy architectural file to future file, and start from exception handler</li>
+<li><strong>In-order dispatch/execution, out-of-order completion, in-order retirement</strong></li>
+<li>Reduce the Overhead of Two Register Files</li>
+<li>Use indirection, i.e. pointers to data in frontend and retirement</li>
+<li>Have a single storage that stores register values</li>
+<li>Keep two register maps(speculative and architectural); also called register alias tables (RATs)</li>
+</ul>
+<h3 id="pipelining-issues-branch-mispredictions">Pipelining Issues: Branch Mispredictions</h3>
+<ul>
+<li>A branch misprediction resembles an "exception"</li>
+<li>How to do branch misprediction recovery? -&gt; similar to exception handling except that it can be initialted before the branch becomes the oldest instruction in the ROB</li>
+<li>Branch mispredictions are more common than exceptions</li>
+<li>Improving Branch State Recovery Latency</li>
+<li>Goal: Restore the frontend state(future file) such that the correct next instruction after the branch can execute right away after the branch misprediction is resolved</li>
+<li>Idea: Checkpoint the frontend register state/map at the time a branch is decoded and keep the checkpointed state updated with results of instructions older than the branch</li>
+</ul>
+<h4 id="checkpointing">Checkpointing</h4>
+<ul>
+<li>When a branch is decoded
+Make a copy of the future file and associate it with the branch</li>
+<li>When an instruction produces a register value
+All future file/map checkpoints that are younger than the instruction are updated with the value</li>
+<li>When a branch misprediction is detected</li>
+<li>Restore the checkpointed future file/map for the mispredicted branch when the branch misprediction is resolved</li>
+<li>Flush instructions in pipeline younger than the branch</li>
+<li>Deallocate checkpoints younger than the branch</li>
+<li>Advantages: correct frontend register state available right after checkpoint restoration -&gt; reduced state recovery latency</li>
+<li>Disadvantages: Storage overhead; complexity in managing checkpoints</li>
+</ul>
 
 
 
@@ -516,7 +1640,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月26日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月27日</span>
   </span>
 
     
@@ -602,13 +1726,13 @@
         
         
           
-          <a href="../3_memory_hierarchy/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1. Memory Hierarchy">
+          <a href="../5_out_of_order_execution/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4. Out-of-Order Execution">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                1. Memory Hierarchy
+                4. Out-of-Order Execution
               </div>
             </div>
             <div class="md-footer__button md-icon">
