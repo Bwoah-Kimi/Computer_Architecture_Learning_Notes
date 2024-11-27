@@ -77,5 +77,6 @@ nav:
     - 1. Quantitative Principles of Computer Design: 1_quantitative_principles.md
     - 2. Introduction to Computer Architecture: 2_introduction_to_computer_architecture.md
     - 3. Pipelining: 4_pipelining.md
+    - 4. Out-of-Order Execution: 5_out_of_order_execution.md
   - II. Memory System:
     - 1. Memory Hierarchy: 3_memory_hierarchy.md

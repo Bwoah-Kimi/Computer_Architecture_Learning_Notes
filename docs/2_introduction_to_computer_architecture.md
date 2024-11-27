@@ -1,10 +1,9 @@
 # What is Computer Architecture?
 
-!!! info "Content Preview"
-	 This part is based on Lecture 2 of CMU 447.
+!!! info "本节内容"
+	本节主要是 CMU 447 的 第二讲内容。
 
 ## Introduction to Computer Architecture
-
 
 ### Computer Architecture in Levels of Transformation
 

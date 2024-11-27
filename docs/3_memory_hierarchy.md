@@ -1,4 +1,7 @@
-# Basic Concepts of Memory Hierarchy
+# Memory Hierarchy
+
+!!! info "本节内容"
+    本节内容主要来自《计算机体系结构：量化研究方法》第二章：存储器层次结构设计。
 
 ## 处理器层次结构中的缓存
 
